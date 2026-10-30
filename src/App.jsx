@@ -21,31 +21,31 @@ const App = () => {
         <Route path='/dashboard' element={
           <>
             <SignedIn><Dashboard /></SignedIn>
-            <SIgnedOut><RedirectToSignIn /></SIgnedOut>
+            < SignedOut><RedirectToSignIn /></SIgnedOut>
           </>
         } />
         <Route path='/upload' element={
           <>
             <SignedIn><Upload /></SignedIn>
-            <SIgnedOut><RedirectToSignIn /></SIgnedOut>
+            <SignedOut><RedirectToSignIn /></SIgnedOut>
           </>
         } />
         <Route path='/my-files' element={
           <>
             <SignedIn><MyFiles /></SignedIn>
-            <SIgnedOut><RedirectToSignIn /></SIgnedOut>
+            <SignedOut><RedirectToSignIn /></SIgnedOut>
           </>
         } />
         <Route path='/subscriptions' element={
           <>
             <SignedIn><Subscription /></SignedIn>
-            <SIgnedOut><RedirectToSignIn /></SIgnedOut>
+            <SignedOut><RedirectToSignIn /></SIgnedOut>
           </>
         } />
         <Route path='/Transactions' element={
           <>
             <SignedIn> <Transactions /></SignedIn>
-            <SIgnedOut><RedirectToSignIn /></SIgnedOut>
+            <SignedOut><RedirectToSignIn /></SIgnedOut>
           </>
         } />
         <Route path="file/:fileId" element={
