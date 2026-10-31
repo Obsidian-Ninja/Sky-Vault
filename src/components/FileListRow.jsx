@@ -28,7 +28,7 @@ const FileListRow = ({file, onDownload, onDelete, onTogglePublic, onShareLink, g
                     >
                         {file.isPublic ? (
                             <>
-                                <Globe size={16} className="text-green-500"} />
+                                <Globe size={16} className="text-green-500" />
                                 <span className="group-hover:underlne">Private</span>
                             </>
                         ) : (
