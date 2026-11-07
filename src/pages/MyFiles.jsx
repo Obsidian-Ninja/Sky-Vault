@@ -6,7 +6,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import {useNavigate} from "react-router-dom";
 import FileCard from "../components/FileCard.jsx";
-import {apiEndpoints} from "../util/apiEndpoints.js";
+import {apiEndpoints} from "../utils/apiEndpoints.js";
 import ConfirmationDialog from "../components/ConfirmationDialog.jsx";
 import LinkShareModal from "../components/LinkShareModal.jsx";
 import FileListRow from "../components/FileListRow.jsx";
@@ -41,8 +41,8 @@ const MyFiles = () => {
             }
 
         } catch (error) {
-            console.error('Error fetching the files from server: ', error);
-            toast.error('Error fetching the files from the server: ', error.messsage);
+            console.error('Error fetching the files from server', error);
+            toast.error('Error fetching the files from the server', error.messsage);
         }
     }
 
@@ -56,8 +56,8 @@ const MyFiles = () => {
         setFiles(files.map((file) => file.id === fileToUpdate.id ? {...file, isPublic: !file.isPublic}: file));
             
         } catch (error) {
-            console.error('Error toggling the file status: ', error);
-            toast.error("Error toggling the file status: ", error.messsage);
+            console.error('Error toggling the file status ', error);
+            toast.error("Error toggling the file status ", error.messsage);
         }
     }
 
@@ -79,8 +79,8 @@ const MyFiles = () => {
             window.URL.revokeObjectURL(url); // clean up the object URL
             
         } catch (error) {
-            console.error('Download failed: ', error);
-            toast.error('Error downloading the file: ', error.messsage);
+            console.error('Download failed ', error);
+            toast.error('Error downloading the file ', error.messsage);
         }
     }
 

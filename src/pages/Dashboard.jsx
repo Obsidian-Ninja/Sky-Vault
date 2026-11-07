@@ -3,29 +3,27 @@ import {useAuth} from "@clerk/clerk-react";
 import {useContext, useEffect, useState} from "react";
 import {UserCreditsContext} from "../context/UserCreditsContext.jsx";
 import axios from "axios";
-import {apiEndpoints} from "../util/apiEndpoints.js";
+import {apiEndpoints} from "../utils/apiEndpoints.js";
 import {Loader2} from "lucide-react";
 import DashboardUpload from "../components/DashboardUpload.jsx";
 import RecentFiles from "../components/RecentFiles.jsx";
 
 const Dashboard = () => {
-    
-    const [files, setFiles] = useState([]);
-    const [uploadFiles, setUploadFiles] = useState([]);
-    const [uploading, setUploading] = useState(false);
-    const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState('');
-    const [messageType, setMessageType] = useState('');
-    const [remainingUploads, setRemainingUpload] = useState(5);   
-    const {getToken} = useAuth();
-    const {fetchUserCredits} = useContext(UserCreditsContext);
-    const MAX_FILES = 5;
+const [files, setFiles] = useState([]);
+const [uploadFiles, setUploadFiles] = useState([]);
+const [uploading, setUploading] = useState(false);
+const [loading, setLoading] = useState(false);
+const [message, setMessage] = useState('');
+const [messageType, setMessageType] = useState('');
+const [remainingUploads, setRemainingUpload] = useState(5);  
+const {getToken} = useAuth();
+const {fetchUserCredits} = useContext(UserCreditsContext);
+const MAX_FILES = 5;
 
     useEffect(() => {
         const fetchRecentFiles = async () => {
             setLoading(true);
             try {
-                
                 const token = await getToken();
 
                 const response = await axios.get(apiEndpoints.FETCH_FILES, {
@@ -51,76 +49,81 @@ const Dashboard = () => {
     }, [getToken]);
 
 
-    const handleFileChange = (e) => {
-        const selectedFiles = Array.from(e.target.value);
+const handleFileChange = (e) => {
+const selectedFiles = Array.from(e.target.files);
 
-        // check if adding these files would exceed the limit
+// check if adding these files would exceed the limit
         if(uploadFiles.length + selectedFiles.length > MAX_FILES){
             setMessage(`You can only upload a maximum of ${MAX_FILES} files at once.`);
             setMessageType('error');
             return;
         }
 
-        // add new files to the existing files
+// add new files to the existing files
         setUploadFiles(prevFiles => [...prevFiles, ...selectedFiles]);
         setMessage('');
         setMessageType('');
+    };
 
-        // remove a file from the uploaded list
-        const handleRemoveFile = (index) => {
-            setUploadFiles(prevFiles => prevFiles.filter((_, i) => i !== index));
-            setMessage('');
-            setMessageType('');
-        };
+// remove a file from the uploaded list
+const handleRemoveFile = (index) => {
+        setUploadFiles(prevFiles => prevFiles.filter((_, i) => i !== index));
+        setMessage('');
+        setMessageType('');
+    };
 
-        // calculate remaining uploads
-        useEffect(() => {
-            setRemainingUpload(MAX_FILES - uploadFiles.length);
-        }, [uploadFiles]);
+// calculate remaining uploads
+    useEffect(() => {
+        setRemainingUpload(MAX_FILES - uploadFiles.length);
+    }, [uploadFiles]);
 
-        // handle file upload
-        const handleUpload = async () => {
-            if(uploadFiles.length === 0) {
-                setMessage('Please select atleast one file to upload');
-                setMessageType('error');
-                return;
-            }
+// handle file upload
+const handleUpload = async () => {
+        if(uploadFiles.length === 0) {
+            setMessage('Please select atleast one file to upload');
+            setMessageType('error');
+            return;
+        }
 
-            if(uploadFiles.length > MAX_FILES){
-                setMessage(`You can only upload a maximum of ${MAX_FILES} files at once.`);
-                setMessageType('error');
-                return;
-            }
+        if(uploadFiles.length > MAX_FILES){
+            setMessage(`You can only upload a maximum of ${MAX_FILES} files at once.`);
+            setMessageType('error');
+            return;
+        }
 
-            setUploading(true);
-            setMessage('Uploading files ...');
-            setMessageType('info');
+        setUploading(true);
+        setMessage('Uploading files ...');
+        setMessageType('info');
 
-            try {
-                
-                const token = await getToken();
-                const response = await axios.post(apiEndpoints.UPLOAD_FILE, FormData, {
-                    headers: {
-                        'Authorization': `Bearer ${token}`,
-                        "Content-Type": 'multipart/form-data'
-                    }
-                });
+        try {
+            const token = await getToken();
+            const formData = new FormData();
 
-                setMessage('Files uploaded successfully! 🎉');
-                setMessageType('success');
-                setUploadFiles([]);
+            uploadFiles.forEach(file => {
+                formData.append('files', file);
+            });
 
-            } catch (error) {
-                console.error('Error uploading the files: ', error);
-                setMessage(error.response?.data?.message || 'Error uploading the files. Please try again later.');
-                setMessageType("error");
-            } finally {
-                setUploading(false);
-            }
+            const response = await axios.post(apiEndpoints.UPLOAD_FILE, formData, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    "Content-Type": 'multipart/form-data'
+                }
+            });
+
+            setMessage('Files uploaded successfully! 🎉');
+            setMessageType('success');
+            setUploadFiles([]);
+
+        } catch (error) {
+            console.error('Error uploading the files: ', error);
+            setMessage(error.response?.data?.message || 'Error uploading the files. Please try again later.');
+            setMessageType("error");
+        } finally {
+            setUploading(false);
         }
     }
-    
-    return (
+
+return (
         <DashboardLayout activeMenu="Dashboard">
             <div className="p-6">
                 <h1 className="text-2xl font-bold mb-6">

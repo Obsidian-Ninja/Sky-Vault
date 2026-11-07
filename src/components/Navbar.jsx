@@ -8,15 +8,14 @@ import {UserCreditsContext} from "../context/UserCreditsContext.jsx";
 
 const Navbar = () => {
 
-    const [openSideMenu, setOpenSideMenu] = useState(false);
-    const {credits, fetchUserCredits} = useContext(UserCreditsContext);
+const [openSideMenu, setOpenSideMenu] = useState(false);
+const {credits, fetchUserCredits} = useContext(UserCreditsContext);
 
     useEffect(() => {
         fetchUserCredits();
     }, [fetchUserCredits]);
-    
-    return (
-        <div className="flex items-center justofy-between gap-5 bg-white border border-b border-gray-200/50 backdrop-blur-[2px] py-4 px-4 sm:px-7 sticky top-0 z-30">
+return (
+        <div className="flex items-center justify-between gap-5 bg-white border border-b border-gray-200/50 backdrop-blur-[2px] py-4 px-4 sm:px-7 sticky top-0 z-30">
             {/* Left side - menu button & title */}
             <div className="flex items-center gap-5">
                 <button
@@ -41,7 +40,7 @@ const Navbar = () => {
 
             <SignedIn>
                 <div className="flex items-center gap-4">
-                    <Link to="/subscription">
+                    <Link to="/subscriptions">
                         <CreditsDisplay credits={credits} />
                     </Link>
                     <div className="relative">
@@ -52,9 +51,9 @@ const Navbar = () => {
 
             {/* Mobile Side Menu */}
             {openSideMenu && (
-            <div className="fixed top-73px left-0 right-0 bg-white borde-b border-gray-200 lg:hidden z-20">
+            <div className="fixed top-[73px] left-0 right-0 bg-white border-b border-gray-200 lg:hidden z-20">
                 {/* Side menu bar */}
-                <SideMenu activeMenu={activeMenu} />
+                <SideMenu activeMenu="Dashboard" />
             </div>
 
     )}

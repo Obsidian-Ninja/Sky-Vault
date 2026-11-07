@@ -1,8 +1,8 @@
 import HeroSection from "../components/landing/HeroSection.jsx";
 import {Fence} from "lucide-react";
-import FeaturesSection from "../components/landing/FeaturesSection.jsx";
+import FeatureSection from "../components/landing/FeatureSection.jsx";
 import PricingSection from "../components/landing/PricingSection.jsx";
-import TestimonialsSection from "../components/landing/TestimonialsSection.jsx";
+import TestimonialSection from "../components/landing/TestimonialSection.jsx";
 import CTASection from "../components/landing/CTASection.jsx";
 import Footer from "../components/landing/Footer.jsx";
 import {features, pricingPlans, testimonials} from "../assets/data.js";
