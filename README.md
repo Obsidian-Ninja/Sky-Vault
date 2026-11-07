@@ -1,16 +1,26 @@
-# React + Vite
+# SkyVault — Secure File Storage & Sharing Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive file storage and sharing application built with React, Tailwind CSS and Spring Boot to help users upload, manage, and share files securely with a simple credit-based subscription system.
 
-Currently, two official plugins are available:
+The website is live @ https://sky-vault-rho.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+<img width="2874" height="1576" alt="image" src="https://github.com/user-attachments/assets/1141c23c-a966-4a76-b056-094a3b89874e" />
 
-## React Compiler
+## Overview
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+SkyVault makes file management simple and accessible. It provides an intuitive dashboard where users can upload files, manage their storage, control file-sharing permissions, and purchase additional credits through subscription plans.
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **User Authentication** — Secure user registration and login.
+- **File Upload** — Upload multiple files through drag-and-drop or file browsing.
+- **File Management** — View and manage uploaded files through a centralized dashboard.
+- **File Sharing** — Share files with public or private access permissions.
+- **Credit-Based System** — Each file upload consumes one credit, with 5 free credits for new users.
+- **Subscription Plans** — Purchase additional credits through available plans.
+- **Online Payments** — Integrated Razorpay payment gateway for payment processing.
+- **Dashboard Overview** — Monitor available credits and view recently uploaded files.
+
+---
+
+Made with 🩵 by Gurvansh
