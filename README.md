@@ -4,7 +4,7 @@ A responsive file storage and sharing application built with React, Tailwind CSS
 
 The website is live @ https://sky-vault-rho.vercel.app/
 
-<img width="2874" height="1576" alt="image" src="https://github.com/user-attachments/assets/1141c23c-a966-4a76-b056-094a3b89874e" />
+<img width="2400" height="1326" alt="image" src="https://github.com/user-attachments/assets/5b9b98a9-70e2-4da2-97dd-34572e85dde2" />
 
 ## Overview
 
