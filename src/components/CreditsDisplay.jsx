@@ -1,4 +1,6 @@
-const CreditDisplay = () => {
+import {CreditCard} from "lucide-react";
+
+const CreditDisplay = ({credits}) => {
     console.log('credits from context: ', credits);
 
     return (

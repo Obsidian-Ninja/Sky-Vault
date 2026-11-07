@@ -97,7 +97,7 @@ const RecentFiles = ({files}) => {
                         </tr>
                     ))}
 
-                    {file.length === 0 && (
+                    {files.length === 0 && (
                         <tr>
                             <td colSpan={5} className="px-4 py-12 text-center">
                                 <div className="flex flex-col items-center justify-center gap-3">

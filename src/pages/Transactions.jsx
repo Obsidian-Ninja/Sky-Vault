@@ -2,7 +2,7 @@ import DashboardLayout from "../layout/DashboardLayout.jsx";
 import {useEffect, useState} from "react";
 import {useAuth} from "@clerk/clerk-react";
 import axios from "axios";
-import {apiEndpoints} from "../util/apiEndpoints.js";
+import {apiEndpoints} from "../utils/apiEndpoints.js";
 import {AlertCircle, Loader2, Receipt} from "lucide-react";
 
 const Transaction = () => {

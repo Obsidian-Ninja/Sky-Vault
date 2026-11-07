@@ -1,6 +1,7 @@
 import { ArrowUpFromLine, FileIcon, Loader2, Upload, X } from "lucide-react";
+import { useRef } from 'react';
 
-const DashboardUpload = () => {
+const DashboardUpload = ({ files, onFileChange, onUpload, uploading, onRemoveFile, remainingUploads }) => {
     
     const fileInputRef = useRef(null);
 
@@ -44,7 +45,7 @@ const DashboardUpload = () => {
                 </div>
 
                 <div className="text-xs text-gray-500">
-                    {remainingUpload} of 5 files remaining
+                    {remainingUploads} of 5 files remaining
                 </div>
             </div>
 
@@ -104,7 +105,7 @@ const DashboardUpload = () => {
             </div>
         )}
 
-        {file.length > 0 && (
+        {files.length > 0 && (
             <div className="mt-3">
                 <button 
                     onClick={onUpload}

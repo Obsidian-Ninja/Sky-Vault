@@ -1,26 +1,27 @@
+
 import DashboardLayout from "../layout/DashboardLayout.jsx";
 import {useContext, useEffect, useRef, useState} from "react";
 import {useAuth, useUser} from "@clerk/clerk-react";
 import {UserCreditsContext} from "../context/UserCreditsContext.jsx";
 import axios from "axios";
-import {apiEndpoints} from "../util/apiEndpoints.js";
+import {apiEndpoints} from "../utils/apiEndpoints.js";
 import {AlertCircle, Check, CreditCard, Loader2} from "lucide-react";
 
 const Subscription = () => {
-    
-    const [processingPayment, setProcessingPayment] = useState(false);
-    const [message, setMessage] = useState("");
-    const [messageType, setMessageType] = useState("");
-    const [razorpayLoaded, setRazorpayLoaded] = useState(false);
 
-    const {getToken} = useAuth();
-    const razorpayScriptRef = useRef(null);
-    const {credits, setCredits, fetchUserCredits} = useContext(UserCreditsContext);
+const [processingPayment, setProcessingPayment] = useState(false);
+const [message, setMessage] = useState("");
+const [messageType, setMessageType] = useState("");
+const [razorpayLoaded, setRazorpayLoaded] = useState(false);
 
-    const {user} = useUser();
-    
-    // plans configuration
-    const plans = [
+const {getToken} = useAuth();
+const razorpayScriptRef = useRef(null);
+const {credits, setCredits, fetchUserCredits} = useContext(UserCreditsContext);
+
+const {user} = useUser();
+
+// plans configuration
+const plans = [
         {
             id: "premium",
             name: "Premium",
@@ -48,7 +49,7 @@ const Subscription = () => {
         }
     ];
 
-    // Load Razorpay script
+// Load Razorpay script
     useEffect(() => {
         if(!window.Razorpay) {
             const script = document.createElement('script');
@@ -76,32 +77,14 @@ const Subscription = () => {
                 document.body.removeChild(razorpayScriptRef.current);
             }
         };
-        }, []);
+    }, []);
 
-        // fetch user credits on component mount
-        useEffect(() => {
-            const fetchUserCredits = async () => {
-                try {
-                    const token = await getToken();
-                    const response = await axios.get(apiEndpoints.apiEndpoints.GET_CREDITS, {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-                    });
+// fetch user credits on component mount
+    useEffect(() => {
+        fetchUserCredits();
+    }, [fetchUserCredits]);
 
-                    setCredits(response.data.credits);
-
-                } catch (error) {
-                    console.error("Error fetching usesr credits. Please try again later: " , error);   
-                    setMessage("Failed to load your current credits. Please try again later.");
-                    setMessageType("error");
-                }
-            };
-
-            fetchUserCredits();
-        }, [getToken]);
-
-        const handlePurchase = async (plan) => {
+const handlePurchase = async (plan) => {
             if(!razorpayLoaded) {
                 setMessage("Payment gateway is still loading. Please try again later.");
                 setMessageType("error");
@@ -112,7 +95,6 @@ const Subscription = () => {
             setMessage('');
 
             try {
-                
                 const token = await getToken();
                 const response = await axios.post(apiEndpoints.CREATE_ORDER, {
                     planId: plan.id,
@@ -126,19 +108,19 @@ const Subscription = () => {
                     }
                 });
 
-                const options = {
+const options = {
                     key: import.meta.env.VITE_RAZORPAY_KEY,
                     amount: plan.price * 100,
                     currency: "INR", 
                     name: "SkyVault",
                     description: `Purchase ${plan.credits} credits`,
                     order_id: response.data.orderId,
-                    handler: async function (response) {
+                    handler: async function (paymentResponse) {
                         try {
                             const verifyResponse = await axios.post(apiEndpoints.VERIFY_PAYMENTS, {
-                                razorpay_order_id: response.razorpay_order_id,
-                                razorpay_payment_id: response.razorpay_payment_id,
-                                razorpay_signature: response.razorpay_signature,
+                                razorpay_order_id: paymentResponse.razorpay_order_id,
+                                razorpay_payment_id: paymentResponse.razorpay_payment_id,
+                                razorpay_signature: paymentResponse.razorpay_signature,
                                 planId: plan.id 
                             }, {
                                 headers: {
@@ -147,8 +129,8 @@ const Subscription = () => {
                             });
 
                             if(verifyResponse.data.success) {
-                                // update credits immediatly with value from response
-                                if(verifyResponse.data.credits) {
+                                // update credits immediately with value from response
+                                if(verifyResponse.data.credits !== undefined) {
                                     console.log('Updating credits to: ', verifyResponse.data.credits);
                                     setCredits(verifyResponse.data.credits);
                                 } else {
@@ -160,21 +142,21 @@ const Subscription = () => {
                                 setMessage(`Payment successful 🎉!, ${plan.name} plan activated.`);
                                 setMessageType('success');
 
-                                } else {
-                                
-                                    setMessage("Payment verification fialed. Please contact support.");
-                                    setMessageType("error");
+                            } else {
+                                setMessage("Payment verification failed. Please contact support.");
+                                setMessageType("error");
                             }
                         } catch (error) {
                             console.error("Payment verification error: ", error);
                             setMessage("Payment verification failed. Please contact support.");
                             setMessageType("error");
+                        } finally {
+                            setProcessingPayment(false);
                         }
                     }, 
-                    
                     prefill : {
-                        name: user.fullName,
-                        email: user.primaryEmailAddress
+                        name: user?.fullName || "",
+                        email: user?.primaryEmailAddress?.emailAddress || ""
                     },
                     theme: {
                         color: "#3B82F6"
@@ -191,13 +173,12 @@ const Subscription = () => {
             } catch (error) {
                 console.error("Payment initiation error: ", error);
                 setMessage("Failed to initiate payment. Please try again later.");
-                setMessageType(false);
-            } finally {
+                setMessageType("error");
                 setProcessingPayment(false);
             }
         }
 
-    return (
+return (
         <DashboardLayout activeMenu="Subscription">
             <div className="p-6">
                 <h1 className="text-2xl font-bold mb-2">
@@ -221,7 +202,7 @@ const Subscription = () => {
                 <div className="flex flex-col md:flex-row gap-6 mb-8">
                     <div className="bg-blue-50 p-6 rounded-lg">
                         <div className="flex items-center gap-2 mb-4">
-                            <CreditsCard className="text-purple-500" />
+                            <CreditCard className="text-purple-500" />
                             <h2 className="text-lg font-medium">
                                 Current Credits: <span className="font-bold text-purple-500">{credits}</span>
                             </h2>
@@ -233,63 +214,62 @@ const Subscription = () => {
                 </div>
 
                 <div className="grid md:grid-cols-2 gap-6">
-                    {plans.map((plan) => {
-                        <div key={plan.id} className={`border rounded-xl p-6 ${plan.recommended ? 'border-purple-200 bg-purple-50 shadow-md' : 'border-gray-200 bg-white'}`}
-                >
-                    {plan.recommended && (
-                        <div className="inline-block bg-purple-500 text-white text-xs font-semibold px-3 py-1 rounded-full mb-4">
-                            RECOMMENDED
+                    {plans.map((plan) => (
+                        <div key={plan.id} className={`border rounded-xl p-6 ${plan.recommended ? 'border-purple-200 bg-purple-50 shadow-md' : 'border-gray-200 bg-white'}`}>
+                            {plan.recommended && (
+                                <div className="inline-block bg-purple-500 text-white text-xs font-semibold px-3 py-1 rounded-full mb-4">
+                                    RECOMMENDED
+                                </div>
+                            )}
+
+                            <h3 className="text-xl font-bold">{plan.name}</h3>
+
+                            <div className="mt-2 mb-4">
+                                <span className="text-3xl font-bold">₹{plan.price}</span>
+                                <span className="text-gray-500">for {plan.credits} credits</span>
+                            </div>
+
+                            <ul className="space-y-3 mb-6">
+                                {plan.features.map((feature, index) => (
+                                    <li key={index} className="flex items-start">
+                                        <Check size={18} className="text-green-500 mr-2 mt-0.5 flex-shrink-0"/>
+                                        <span>{feature}</span>
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <button
+                                onClick={() => handlePurchase(plan)}
+                                disabled={processingPayment}
+                                className={`w-full py-2 rounded-md font-medium transition-colors ${
+                                            plan.recommended
+                                                ? 'bg-purple-500 text-white hover:bg-purple-600'
+                                                : 'bg-white border border-purple-500 text-purple-500 hover:bg-purple-50'
+                                        } disabled:opacity-50 flex items-center justify-center gap-2`}
+                            >
+                                {processingPayment ? (
+                                    <>
+                                        <Loader2 size={16} className="animate-spin" />
+                                        <span>Processing ...</span>
+                                    </>
+                                ) : (
+                                    <span>Purchase Plan</span>
+                                )}
+                            </button>
                         </div>
-                    )}
-
-                    <h3 className="text-xl font-bold">{plan.name}</h3>
-
-                    <div className="mt-2 mb-4">
-                        <span className="text-3xl font-bold">₹{plan.price}</span>
-                        <span className="text-gray-500">for {plan.credits} credits</span>
-                    </div>
-
-                    <ul className="space-y-3 mb-6">
-                        {plan.features.map((feature, index) => (
-                            <li key={index} className="flex items-start">
-                                <Check size={18} className="text-green-500.mr-2.mt-0.5.flex-shrink-0"/>
-                                <span>{feature}</span>
-                            </li>
-                        ))}
-                    </ul>
-
-                    <button
-                        onClick={() => handlePurchase(plan)}
-                        disabled={processingPayment}
-                        className={`w-full py-2 rounded-md font-medium transition-colors ${
-                                    plan.recommended
-                                        ? 'bg-purple-500 text-white hover:bg-purple-600'
-                                        : 'bg-white border border-purple-500 text-purple-500 hover:bg-purple-50'
-                                } disabled:opacity-50 flex items-center justify-center gap-2`}
-                    >
-                        {processingPayment ? (
-                            <>
-                                <Loader2 size={16} className="animate-spin" />
-                                <span>Processing ...</span>
-                            </>
-                        ) : (
-                            <span>Purchase Plan</span>
-                        )}
-                    </button>
+                    ))}
                 </div>
-                    })}
-            </div>
 
-            <div className="mt-8 bg-gray-50 p-4 rounded-lg border border-gray-200">
-                <h3 className="font-medium mb-2">How credits work</h3>
+                <div className="mt-8 bg-gray-50 p-4 rounded-lg border border-gray-200">
+                    <h3 className="font-medium mb-2">How credits work</h3>
 
-                <p className="text-sm text-gray-600">
-                    Each file upload consumes 1 credit. New users start with 5 free credits.
-                    Credits never expire and can be used at any time. If you run out of credits, you can purchase more through one of our plan above.
-                </p>
+                    <p className="text-sm text-gray-600">
+                        Each file upload consumes 1 credit. New users start with 5 free credits.
+                        Credits never expire and can be used at any time. If you run out of credits, you can purchase more through one of our plans.
+                    </p>
+                </div>
             </div>
-        </div>
-    </ DashboardLayout>
+        </DashboardLayout>
     )
 }
 
