@@ -40,7 +40,7 @@ const DashboardUpload = ({ files, onFileChange, onUpload, uploading, onRemoveFil
             <div className="flex items-center justify-between mb-2">
 
                 <div className="flex items-center gap-2">
-                    <ArrowUpFromLine className="text-purple-500" size={18} />
+                    <ArrowUpFromLine className="text-orange-500" size={18} />
                     <h2 className="text-base font-medium">Upload Files</h2>
                 </div>
 
@@ -49,14 +49,14 @@ const DashboardUpload = ({ files, onFileChange, onUpload, uploading, onRemoveFil
                 </div>
             </div>
 
-        <div className="border-dashed border-2 border-gray-300 rounded-lg p-6 text-center bg-white cursor-pointer hover:border-purple-500 transition-colors"
+        <div className="border-dashed border-2 border-gray-300 rounded-lg p-6 text-center bg-white cursor-pointer hover:border-orange-500 transition-colors"
             onDragOver={handleDragOver}
             onDrop={handleDrop}
             onClick={handleBrowseClick}
         >
             <div className="flex flex-col items-center justify-center">
-                <div className="p-2 rounded-full bg-purple-50 mb-3">
-                    <ArrowUpFromLine size={20} className="text-purple-500" />
+                <div className="p-2 rounded-full bg-orange-50 mb-3">
+                    <ArrowUpFromLine size={20} className="text-orange-500" />
                 </div>
 
                 <p className="text-gray-700 text-sm mb-1">Drag and Drop files here</p>
@@ -80,7 +80,7 @@ const DashboardUpload = ({ files, onFileChange, onUpload, uploading, onRemoveFil
                     {files.map((file, index) => (
                         <div className="flex items-center justify-between p-2 border-b last:border-b-0 hover:bg-gray-50">
                             <div className="flex items-center gap-2">
-                                <FileIcon size={16} className="text-purple-500" />
+                                <FileIcon size={16} className="text-orange-500" />
                                 <div>
                                     <p className="text-xs font-medium text-gray-800 truncate max-w-[150px]">
                                         {file.name}
@@ -109,7 +109,7 @@ const DashboardUpload = ({ files, onFileChange, onUpload, uploading, onRemoveFil
             <div className="mt-3">
                 <button 
                     onClick={onUpload}
-                    className="w-full py-2 bg-purple-500 text-white text-sm rounded-md hover:bg-purple-600 disabled:opacity-50 flex items-center justify-center gap-2 transition-colors"
+                    className="w-full py-2 bg-orange-500 text-white text-sm rounded-md hover:bg-orange-600 disabled:opacity-50 flex items-center justify-center gap-2 transition-colors"
                 >
                     {uploading ? (
                         <>

@@ -78,7 +78,7 @@ const Transaction = () => {
                             No Transactions Yet
                         </h3>
                         <p className="text-gray-500">
-                            You haven't made any credits purchases yet. Please Visit subscriptions page to buy credits.
+                            You haven't purchased any credits yet. Visit the Subscriptions page to purchase credits and get started.
                         </p>
                     </div>
                 ) : (

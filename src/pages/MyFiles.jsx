@@ -154,7 +154,7 @@ const MyFiles = () => {
         const extenstion = file.name.split('.').pop().toLowerCase();
 
         if (['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp'].includes(extenstion)) {
-            return <Image size={24} className="text-purple-500" />
+            return <Image size={24} className="text-orange-500" />
         }
 
         if (['mp4', 'webm', 'mov', 'avi', 'mkv'].includes(extenstion)) {
@@ -169,7 +169,7 @@ const MyFiles = () => {
             return <FileText size={24} className="text-amber-500" />
         }
 
-        return <FileIcon size={24} className="text-purple-500" />
+        return <FileIcon size={24} className="text-orange-500" />
     }
     
     return (
@@ -196,7 +196,7 @@ const MyFiles = () => {
                     <div className="bg-white rounded-lg shadow p-12 flex flex-col items-center justify-center">
                         <File 
                             size={60}
-                            className="text-purple-300 mb-4"
+                            className="text-orange-300 mb-4"
                         />
 
                         <h3 className="text-xl font-medium text-gray-700 mb-2">
@@ -204,12 +204,12 @@ const MyFiles = () => {
                         </h3>
 
                         <p className="text-gray-500 text-center mx-w-md mb-6">
-                            Start uploading files to see them listed here. You can upload documents, images, and other files to share and manage them securely.
+                            Upload your first file to get started. You can add documents, images, and other files to securely store, manage, and share them.
                         </p>
 
                         <button 
                             onClick={() => navigate('/upload')}
-                            className="px-4 py-2 bg-purple-500 text-white rounded-md hover:bg-purple-600 transition-colors"
+                            className="px-4 py-2 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition-colors"
                         >
                             Go to Upload
                         </button>

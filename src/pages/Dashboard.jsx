@@ -130,13 +130,13 @@ return (
                     My Drive
                 </h1>
                 <p className="text-gray-600 mb-6">
-                    Upload, manage and share your files securely.
+                    Upload, organize, and share your files securely.
                 </p>
                 {message && (
                     <div className={`mb-6 p-4 rounded-lg flex items-center gap-3 ${
                         messageType === 'error' ? 'bg-red-50 text-red-700' :
                             messageType === 'success' ? 'bg-green-50 text-green-700' :
-                                'bg-purple-50 text-purple-700'
+                                'bg-orange-50 text-orange-700'
                     }`}>
                         {message}
                     </div>
@@ -160,7 +160,7 @@ return (
                     <div className="w-full md:w-[60%]">
                         {loading ? (
                             <div className="bg-white rounded-lg shadow p-8 flex flex-col items-center justify-center min-h-[300px]">
-                                <Loader2 size={40} className="text-purple-500 animate-spin mb-4" />
+                                <Loader2 size={40} className="text-orange-500 animate-spin mb-4" />
                                 <p className="text-gray-500">Loading your files ...</p>
                             </div>
                         ) : (
