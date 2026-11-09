@@ -182,10 +182,10 @@ return (
         <DashboardLayout activeMenu="Subscription">
             <div className="p-6">
                 <h1 className="text-2xl font-bold mb-2">
-                    Subscription Plans
+                    Choose Your Plan
                 </h1>
                 <p className="text-gray-600 mb-6">
-                    Choose a plan that works for you
+                    Choose the plan that best suits your needs.
                 </p>
 
                 {message && (
@@ -202,9 +202,9 @@ return (
                 <div className="flex flex-col md:flex-row gap-6 mb-8">
                     <div className="bg-blue-50 p-6 rounded-lg">
                         <div className="flex items-center gap-2 mb-4">
-                            <CreditCard className="text-purple-500" />
+                            <CreditCard className="text-orange-500" />
                             <h2 className="text-lg font-medium">
-                                Current Credits: <span className="font-bold text-purple-500">{credits}</span>
+                                Current Credits: <span className="font-bold text-orange-500">{credits}</span>
                             </h2>
                         </div>
                         <p className="text-sm text-gray-600 mt-2">
@@ -215,9 +215,9 @@ return (
 
                 <div className="grid md:grid-cols-2 gap-6">
                     {plans.map((plan) => (
-                        <div key={plan.id} className={`border rounded-xl p-6 ${plan.recommended ? 'border-purple-200 bg-purple-50 shadow-md' : 'border-gray-200 bg-white'}`}>
+                        <div key={plan.id} className={`border rounded-xl p-6 ${plan.recommended ? 'border-orange-200 bg-orange-50 shadow-md' : 'border-gray-200 bg-white'}`}>
                             {plan.recommended && (
-                                <div className="inline-block bg-purple-500 text-white text-xs font-semibold px-3 py-1 rounded-full mb-4">
+                                <div className="inline-block bg-orange-500 text-white text-xs font-semibold px-3 py-1 rounded-full mb-4">
                                     RECOMMENDED
                                 </div>
                             )}
@@ -226,7 +226,7 @@ return (
 
                             <div className="mt-2 mb-4">
                                 <span className="text-3xl font-bold">₹{plan.price}</span>
-                                <span className="text-gray-500">for {plan.credits} credits</span>
+                                <span className="text-gray-500"> for {plan.credits} credits</span>
                             </div>
 
                             <ul className="space-y-3 mb-6">
@@ -243,8 +243,8 @@ return (
                                 disabled={processingPayment}
                                 className={`w-full py-2 rounded-md font-medium transition-colors ${
                                             plan.recommended
-                                                ? 'bg-purple-500 text-white hover:bg-purple-600'
-                                                : 'bg-white border border-purple-500 text-purple-500 hover:bg-purple-50'
+                                                ? 'bg-orange-500 text-white hover:bg-orange-600'
+                                                : 'bg-white border border-orange-500 text-orange-500 hover:bg-orange-50'
                                         } disabled:opacity-50 flex items-center justify-center gap-2`}
                             >
                                 {processingPayment ? (
@@ -264,8 +264,8 @@ return (
                     <h3 className="font-medium mb-2">How credits work</h3>
 
                     <p className="text-sm text-gray-600">
-                        Each file upload consumes 1 credit. New users start with 5 free credits.
-                        Credits never expire and can be used at any time. If you run out of credits, you can purchase more through one of our plans.
+                        Each file upload uses 1 credit. New users get 5 free credits to get started. 
+                        Credits never expire and can be used anytime. If you run out, you can purchase additional credits through our available plans.
                     </p>
                 </div>
             </div>

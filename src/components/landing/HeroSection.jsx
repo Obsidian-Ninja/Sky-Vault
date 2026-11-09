@@ -4,7 +4,7 @@ const HeroSection = ({ openSignIn, openSignUp }) => {
     return (
         <div className="landing-page-content relative">
 
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-50 to-indigo-50 opacity-80 z-0 pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-orange-50 to-indigo-50 opacity-80 z-0 pointer-events-none"></div>
 
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
@@ -14,16 +14,16 @@ const HeroSection = ({ openSignIn, openSignUp }) => {
 
                         <h1 className="text-3xl leading-tight tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
                             <span className="block">
-                                Share Files Securely With
+                                Share Files. Stay Secure.
                             </span>
 
-                            <span className="block text-purple-500">
+                            <span className="block text-orange-500">
                                 SkyVault
                             </span>
                         </h1>
 
                         <p className="mt-3 max-w-md mx-auto text-sm px-2 text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-                            Upload, manage and share your files securely. Accessible anywhere, anytime.
+                            Upload, organize, and share your files securely. Access them anytime, anywhere.
                         </p>
 
                         <div className="mt-8 sm:mt-10 max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center">
@@ -32,7 +32,7 @@ const HeroSection = ({ openSignIn, openSignUp }) => {
 
                                 <button
                                     onClick={() => openSignUp?.()}
-                                    className="w-full sm:w-auto flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-purple-500 hover:bg-purple-600 md:py-4 md:text-lg md:px-10 transition-all duration-200 shadow-lg hover:shadow-xl"
+                                    className="w-full sm:w-auto flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-orange-500 hover:bg-orange-600 md:py-4 md:text-lg md:px-10 transition-all duration-200 shadow-lg hover:shadow-xl"
                                 >
                                     Get Started
                                 </button>
@@ -66,7 +66,7 @@ const HeroSection = ({ openSignIn, openSignUp }) => {
 
                 <div className="mt-8 mb-4 text-center">
                     <p className="mt-4 text-sm sm:text-base text-black font-bold">
-                        All your files are encrypted and stored securely with enterprise-grade security protocols.
+                        All your files are encrypted and securely stored using enterprise-grade security protocols.
                     </p>
                 </div>
 

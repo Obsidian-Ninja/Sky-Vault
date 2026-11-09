@@ -23,7 +23,7 @@ const Modal = ({
                     confirmText = "Confirm",
                     cancelText="Cancel",
                     onConfirm,
-                    confirmButtonClass = "bg-purple-500 hover: bg-purple-600",
+                    confirmButtonClass = "bg-orange-500 hover: bg-orange-600",
                     size="md"
     }) => {
 
@@ -117,7 +117,7 @@ const Modal = ({
                     <button 
                         type='button'
                         onClick={onClose}
-                        className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-purple-300"
+                        className="px-4 py-2 bg-gray-100 text-gray-700 rounded-md hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-300"
                     >
                         {cancelText}
                     </button>

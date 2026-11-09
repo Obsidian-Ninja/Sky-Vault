@@ -7,7 +7,7 @@ const RecentFiles = ({files}) => {
 
         // Image files
         if (['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp'].includes(extension)) {
-            return <Image size={18} className="text-purple-500" />;
+            return <Image size={18} className="text-orange-500" />;
         }
 
         // Video files
@@ -102,7 +102,7 @@ const RecentFiles = ({files}) => {
                             <td colSpan={5} className="px-4 py-12 text-center">
                                 <div className="flex flex-col items-center justify-center gap-3">
                                     <FileText size={40}
-                                    className='text-purple-300' />
+                                    className='text-orange-300' />
 
                                     <p className="text-gray-500 font-medium">No files uploaded yet.</p>
                                     <p className="text-gray-400 text-sm max-w-md">Upload your first file using the upload panel to get started with SkyVault.</p>

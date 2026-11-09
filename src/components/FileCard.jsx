@@ -9,7 +9,7 @@ const FileCard = ({file, onDelete, onTogglePublic, onDownload, OnShareLink}) => 
         const extenstion = file.name.split('.').pop().toLowerCase();
 
         if (['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp'].includes(extenstion)) {
-            return <Image size={24} className="text-purple-500" />
+            return <Image size={24} className="text-orange-500" />
         }
 
         if (['mp4', 'webm', 'mov', 'avi', 'mkv'].includes(extenstion)) {
@@ -24,7 +24,7 @@ const FileCard = ({file, onDelete, onTogglePublic, onDownload, OnShareLink}) => 
             return <FileText size={24} className="text-amber-500" />
         }
 
-        return <FileIcon size={24} className="text-purple-500" />
+        return <FileIcon size={24} className="text-orange-500" />
     }
 
     const formatFileSize = (bytes) => {
@@ -45,7 +45,7 @@ const FileCard = ({file, onDelete, onTogglePublic, onDownload, OnShareLink}) => 
             onMouseLeave={() => setShowActions(false)}
         >
             {/* file preview area */}
-            <div className="h-32 bg-gradient-to-br from-purple-50-to-indigo-50 flex items-center justify-center p-4">
+            <div className="h-32 bg-gradient-to-br from-orange-50-to-indigo-50 flex items-center justify-center p-4">
                 {getFileIcon(file)}
             </div>
 
@@ -80,7 +80,7 @@ const FileCard = ({file, onDelete, onTogglePublic, onDownload, OnShareLink}) => 
                             <button 
                                 onClick={() => OnShareLink(file.id)}
                                 title="Share Link"
-                                className="p-2 cursor-pointer bg-white/90 rounded-full hover:bg-white transition-colors text-purple-500 hover:text-purple-600">
+                                className="p-2 cursor-pointer bg-white/90 rounded-full hover:bg-white transition-colors text-orange-500 hover:text-orange-600">
                                 <Copy size={18} />
                             </button>
                         )}

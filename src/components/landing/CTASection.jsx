@@ -1,6 +1,6 @@
 const CTASection = ({ openSignUp }) => {
     return (
-        <div className="bg-purple-500">
+        <div className="bg-orange-500">
             <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-center">
 
                 <h2 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
@@ -8,8 +8,8 @@ const CTASection = ({ openSignUp }) => {
                         Ready to get started?
                     </span>
 
-                    <span className="block text-purple-100">
-                        Create your account today.
+                    <span className="block text-orange-100">
+                        Create an account today.
                     </span>
                 </h2>
 
@@ -17,7 +17,7 @@ const CTASection = ({ openSignUp }) => {
                     <div className="inline-flex rounded-md shadow">
                         <button
                             onClick={() => openSignUp?.()}
-                            className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-purple-600 bg-white hover:bg-purple-50 transition-colors duration-200"
+                            className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-orange-600 bg-white hover:bg-orange-50 transition-colors duration-200"
                         >
                             Sign up for free
                         </button>

@@ -45,11 +45,11 @@ const FeatureSection = ({ features = [] }) => {
 
                 <div className="text-center">
                     <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-                        Everything you need for file sharing
+                        Everything you need to share files
                     </h2>
 
                     <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-500">
-                        SkyVault provides all the tools you need to manage your digital content
+                        SkyVault gives you all the tools you need to manage and share your digital content.
                     </p>
                 </div>
 

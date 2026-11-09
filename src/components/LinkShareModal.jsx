@@ -52,7 +52,7 @@ const LinkShareModal = ({isOpen, onClose, link, title="Share Link"}) => {
             confirmText={copied ? "Copied!" : "Copy"}
             cancelText="Close"
             onClonfirm={handleCopyLink}
-            confirmButtonClass={copied ? "bg-green-600 hover:bg-green-700" :  "bg-purple-500 ghover:bg-purple-600"}
+            confirmButtonClass={copied ? "bg-green-600 hover:bg-green-700" :  "bg-orange-500 ghover:bg-orange-600"}
             size="md"
         >
             <div className="space-y-4">
@@ -60,11 +60,11 @@ const LinkShareModal = ({isOpen, onClose, link, title="Share Link"}) => {
                     Share this link with others to give them access to this file:
                 </p>
                 <div className="flex items-center gap-2">
-                    <input type="text" className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500" />
+                    <input type="text" className="flex-1 px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500" />
 
                     <button
                         onClick={handleCopyLink}
-                        className={`p-2 rounded-md ${copied ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-600'} hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500`}
+                        className={`p-2 rounded-md ${copied ? 'bg-green-100 text-green-600' : 'bg-gray-100 text-gray-600'} hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500`}
                         title={copied ? "Copied!" : "Copy to clipboard"}
                     >
                         {copied ? <Check size={20} /> : <Copy size={20} />}

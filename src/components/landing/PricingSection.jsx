@@ -21,14 +21,14 @@ const PricingSection = ({ pricingPlans = [], openSignUp }) => {
                             key={index}
                             className={`flex flex-col rounded-lg shadow-lg overflow-hidden ${
                                 plan.highlighted
-                                    ? "border-2 border-purple-500 transform scale-105"
+                                    ? "border-2 border-orange-500 transform scale-105"
                                     : "border border-gray-200"
                             }`}
                         >
                             <div
                                 className={`px-6 py-8 bg-white ${
                                     plan.highlighted
-                                        ? "bg-gradient-to-br from-purple-50 to-white"
+                                        ? "bg-gradient-to-br from-orange-50 to-white"
                                         : ""
                                 }`}
                             >
@@ -38,7 +38,7 @@ const PricingSection = ({ pricingPlans = [], openSignUp }) => {
                                     </h3>
 
                                     {plan.highlighted && (
-                                        <span className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-purple-100 text-purple-800">
+                                        <span className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-orange-100 text-orange-800">
                                             Popular
                                         </span>
                                     )}
@@ -63,7 +63,7 @@ const PricingSection = ({ pricingPlans = [], openSignUp }) => {
                                             className="flex items-start"
                                         >
                                             <div className="flex-shrink-0">
-                                                <Check className="h-5 w-5 text-purple-500" />
+                                                <Check className="h-5 w-5 text-orange-500" />
                                             </div>
 
                                             <p className="ml-3 text-base text-gray-700">
@@ -78,8 +78,8 @@ const PricingSection = ({ pricingPlans = [], openSignUp }) => {
                                         onClick={() => openSignUp?.()}
                                         className={`w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md ${
                                             plan.highlighted
-                                                ? "text-white bg-purple-500 hover:bg-purple-600"
-                                                : "text-purple-600 bg-white hover:bg-gray-50 border-purple-500"
+                                                ? "text-white bg-orange-500 hover:bg-orange-600"
+                                                : "text-orange-600 bg-white hover:bg-gray-50 border-orange-500"
                                         } transition-colors duration-200`}
                                     >
                                         {plan.cta}

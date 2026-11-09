@@ -3,7 +3,7 @@ import {CreditCard, Files, LayoutDashboard, Receipt, Upload} from "lucide-react"
 export const features = [
     {
         iconName: "ArrowUpCircle",
-        iconColor: "text-purple-500",
+        iconColor: "text-orange-500",
         title: "Easy File Upload",
         description: "Quickly upload your files with our intuitive drag-and-drop interface."
     },
@@ -15,7 +15,7 @@ export const features = [
     },
     {
         iconName: "Share2",
-        iconColor: "text-purple-500",
+        iconColor: "text-orange-500",
         title: "Simple Sharing",
         description: "Share files with anyone using secure links that you control."
     },
@@ -84,32 +84,34 @@ export const pricingPlans = [
     }
 ];
 
+
 export const testimonials = [
     {
-        name: "Sarah Johnson",
-        role: "Marketing Director",
-        company: "CreativeMinds Inc.",
-        image: "https://randomuser.me/api/portraits/women/32.jpg",
-        quote: "CloudShare has transformed how our team collaborates on creative assets. The secure sharing and intuitive interface have made file management a breeze.",
+        name: "Aarav Sharma",
+        role: "Marketing Manager",
+        company: "PixelCraft Technologies",
+        image: "https://randomuser.me/api/portraits/men/47.jpg",
+        quote: "SkyVault has made it so much easier for our team to share and manage creative files. The secure sharing and simple interface save us a lot of time.",
         rating: 5
     },
     {
-        name: "Michael Chen",
+        name: "Rohan Mehta",
         role: "Freelance Designer",
         company: "Self-employed",
-        image: "https://randomuser.me/api/portraits/men/46.jpg",
-        quote: "As a freelancer, I need to share large design files with clients securely. CloudShare's simple interface and reasonable pricing make it my go-to solution.",
+        image: "https://randomuser.me/api/portraits/men/61.jpg",
+        quote: "I regularly share large design files with clients, and SkyVault makes the whole process simple and secure. It's become an essential part of my workflow.",
         rating: 5
     },
     {
         name: "Priya Sharma",
         role: "Project Manager",
-        company: "TechSolutions Ltd.",
-        image: "https://randomuser.me/api/portraits/women/65.jpg",
-        quote: "Managing project files across multiple teams used to be a nightmare until we found CloudShare. Now everything is organized and accessible exactly when we need it.",
+        company: "TechNova Solutions",
+        image: "https://randomuser.me/api/portraits/women/12.jpg",
+        quote: "Managing project files across different teams used to be difficult. With SkyVault, everything stays organized, secure, and accessible whenever we need it.",
         rating: 4
     }
 ];
+
 //side menu bar options
 export const SIDE_MENU_DATA = [
     {
